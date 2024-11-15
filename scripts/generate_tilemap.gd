@@ -35,9 +35,12 @@ var adjacency_rules = {
 func _ready():
 	update_adjacency_rules()
 	
+	
 	var world_size = sight_radius * 2
 	var rect = Rect2(Vector2(-world_size/2, -world_size/2), Vector2(world_size, world_size)) # Rectangle area to randomize
 	initialize_world(rect)
+	
+	print(adjacency_rules)
 	
 	generate_midpoint_circle(sight_radius)
 	randomize_player_sight_circle(Vector2i.ZERO)
@@ -85,19 +88,13 @@ func add_circle_points(circle_points: Array, x: int, y: int):
 
 
 func update_adjacency_rules():
-	# Clear existing adjacency rules
-	# adjacency_rules.clear()
-	#for i in tile_atlas_coords:
-		#adjacency_rules[i] = []
-
-	var used_cells = get_used_cells()
-
+	var used_cells = get_used_cells() # Makes an array of all the occupied cell positions
+	
 	for tile_pos in used_cells:
-		# Get the current tile's position
-		#var tile_pos = Vector2(x, y)
 		
-		
+		# Checks for a valid tile, might not be necessary since we're only checking used cells?
 		if get_cell_source_id(tile_pos) != -1:
+			
 			# Get the tile type and its coordinates in the atlas
 			var tile_coords = get_cell_atlas_coords(tile_pos)
 			var tile_type = tile_atlas_coords.find_key(tile_coords)
@@ -119,6 +116,7 @@ func update_adjacency_rules():
 					adjacency_rules[tile_type].append(tile)
 
 
+
 func initialize_world(rect: Rect2):
 	for x in range(rect.position.x, rect.position.x + rect.size.x):
 		for y in range(rect.position.y, rect.position.y + rect.size.y):
@@ -126,24 +124,19 @@ func initialize_world(rect: Rect2):
 				generate_tile_with_constraints(Vector2i(x, y))
 
 
+
 func randomize_player_sight_circle(player_coords: Vector2i):
 	for coord in circle_points:
 		coord = coord + player_coords
 		if get_cell_source_id(coord) == -1: # if the tile is empty
 			generate_tile_with_constraints(coord)
-			
-			
-	#		if randf() < 0.5:		
-	#			var random_tile_key = tile_atlas_coords.keys().pick_random()
-	#			set_cell(0, coord, 0, tile_atlas_coords[random_tile_key]) # Set the random tile at the specified coordinate
-	#		else:
-	#			set_cell(0, coord, 0, tile_atlas_coords["dirt01"])  # Set to gravel
 
 
 
 func change_tile(tile_coord: Vector2i, tile_type: String):
 	if get_cell_source_id(tile_coord) == -1:
 		set_cell(tile_coord, 0, tile_atlas_coords[tile_type])
+
 
 
 func generate_tile_with_constraints(position: Vector2i):
@@ -155,8 +148,10 @@ func generate_tile_with_constraints(position: Vector2i):
 	else:
 		change_tile(position, "dirt01")
 
-# Function to get the types of adjacent tiles
+
+
 func get_adjacent_tile_types(position: Vector2i) -> Array:
+	
 	var adjacent_positions = [
 		Vector2i(position.x, position.y - 1),  # Up
 		Vector2i(position.x + 1, position.y),  # Right
@@ -167,33 +162,33 @@ func get_adjacent_tile_types(position: Vector2i) -> Array:
 	var adjacent_tile_types = []
 
 	for pos in adjacent_positions:
-		var coords = get_cell_atlas_coords(pos)
-		var tile_type = tile_atlas_coords.find_key(coords)
-		if tile_type != null:
-			adjacent_tile_types.append(tile_type)
-
+		if get_cell_source_id(pos) != -1: # Make sure there's actually a tile at pos
+			var coords = get_cell_atlas_coords(pos) # Get the atlas coordinates
+			var tile_type = tile_atlas_coords.find_key(coords) # Look up the tile type
+			if tile_type != null: # Ensure the tile type exists in the atlas
+				adjacent_tile_types.append(tile_type)
+				
 	return adjacent_tile_types
 
 
 
 func get_possible_tiles(neighbors: Array) -> Array:
 	if neighbors.size() == 0:
-		return tile_atlas_coords.keys()
+		return []
 
 	var possible_tiles = []
-	for tile in tile_atlas_coords.keys(): # look at each tile type in the tile atlas dict
-		if tile in adjacency_rules: # make sure adjacency rules are defined for the tile
-			var valid_tile = true 
+	
+	for tile in tile_atlas_coords.keys(): # Look at each tile type in the tile atlas dict
+		if tile in adjacency_rules: # Make sure adjacency rules are defined for the tile
+			var valid_tile = true # This tile is in the adjacency rules
+			
 			for neighbor in neighbors:
 				if neighbor not in adjacency_rules[tile]:
 					valid_tile = false
 					break
-				else:
-					for neighbors_possible_tiles in adjacency_rules[neighbor]:
-						if neighbors_possible_tiles == tile:
-							possible_tiles.append(tile)
-		else:
-			# If there are no adjacency rules defined for the tile, include it as a possible tile
-			possible_tiles.append(tile)
+
+			if valid_tile:
+				possible_tiles.append(tile) # Add the valid tile
+				
 	return possible_tiles
 		
