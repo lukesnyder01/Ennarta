@@ -1,8 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://1ube7cqixybm"]
+[gd_scene load_steps=9 format=3 uid="uid://1ube7cqixybm"]
 
 [ext_resource type="Texture2D" uid="uid://b06n3m758lxq6" path="res://sprites/tileset.png" id="1_aahr4"]
 [ext_resource type="Script" path="res://scripts/player.gd" id="2_hmjhi"]
 [ext_resource type="AudioStream" uid="uid://b6ot12cul72xy" path="res://audio/step01.wav" id="4_b7447"]
+[ext_resource type="AudioStream" uid="uid://bg8xtliifxgeo" path="res://audio/berry.wav" id="4_sl0mt"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_31im1"]
 atlas = ExtResource("1_aahr4")
@@ -40,9 +41,14 @@ autoplay = "default"
 [node name="RayCast2D" type="RayCast2D" parent="."]
 visible = false
 
-[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+[node name="FootstepSound" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("4_b7447")
 volume_db = -8.886
+pitch_scale = 1.1
+
+[node name="BerrySound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_sl0mt")
+volume_db = 4.386
 pitch_scale = 1.1
 
 [node name="Camera2D" type="Camera2D" parent="."]

@@ -73,7 +73,7 @@ func move_player(direction: Vector2i):
 			tilemap.randomize_player_sight_circle(player_tile_coord + direction)
 			
 			moving_direction = movement
-			$AudioStreamPlayer2D.play()
+			$"FootstepSound".play()
 			
 			global_position = global_position + (moving_direction * Constants.TILE_SIZE)
 			moving_direction = Vector2.ZERO
