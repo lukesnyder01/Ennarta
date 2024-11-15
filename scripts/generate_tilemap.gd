@@ -90,7 +90,7 @@ func update_adjacency_rules():
 	#for i in tile_atlas_coords:
 		#adjacency_rules[i] = []
 
-	var used_cells = get_used_cells
+	var used_cells = get_used_cells()
 
 	for tile_pos in used_cells:
 		# Get the current tile's position
