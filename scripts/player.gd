@@ -1,7 +1,7 @@
 extends CharacterBody2D
  
 
-@export var player_move_delay := 0.3
+@export var player_move_delay: float
 var move_timer := 0.0
 
 var moving_direction: Vector2 = Vector2.ZERO

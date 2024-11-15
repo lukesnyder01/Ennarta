@@ -136,8 +136,12 @@ func randomize_player_sight_circle(player_coords: Vector2i):
 func change_tile(tile_coord: Vector2i, tile_type: String):
 	if get_cell_source_id(tile_coord) == -1:
 		set_cell(tile_coord, 0, tile_atlas_coords[tile_type])
-		if tile_type == "bushes01" and randf() < 0.3:
+		if tile_type == "bushes01" and randf() < 0.2:
 			spawn_berry(tile_coord)
+		elif tile_type == "stone02" and randf() < 0.4:
+			spawn_enemy(tile_coord)
+
+
 
 func spawn_berry(tile_coord: Vector2i):
 	var berry_scene = preload("res://scenes/berry.tscn")
@@ -146,6 +150,16 @@ func spawn_berry(tile_coord: Vector2i):
 	# Convert tile coordinates to world position
 	berry_instance.position = map_to_local(tile_coord)
 	add_child(berry_instance)
+
+
+func spawn_enemy(tile_coord: Vector2i):
+	var enemy_scene = preload("res://scenes/bone_crow.tscn")
+	var enemy_instance = enemy_scene.instantiate()
+		
+	# Convert tile coordinates to world position
+	enemy_instance.position = map_to_local(tile_coord)
+	add_child(enemy_instance)
+
 
 
 func generate_tile_with_constraints(position: Vector2i):

@@ -1,6 +1,6 @@
 extends CharacterBody2D
 
-@export var time_between_moves := 1.0
+@export var time_between_moves := 0.6
 
 var move_timer := 0.0
 var player = null

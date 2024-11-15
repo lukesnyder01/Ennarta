@@ -33,6 +33,7 @@ animations = [{
 collision_mask = 2
 slide_on_ceiling = false
 script = ExtResource("2_hmjhi")
+player_move_delay = 0.3
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_m77te")
