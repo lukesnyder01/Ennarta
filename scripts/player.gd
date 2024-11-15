@@ -8,7 +8,7 @@ var moving_direction: Vector2 = Vector2.ZERO
 
 var recent_move := Vector2.ZERO
 
-@export var tilemap: TileMap
+@export var tilemap: TileMapLayer
 
 
 
@@ -82,4 +82,3 @@ func move_player(direction: Vector2i):
 func get_player_tile_coord():
 	var tile_coord = tilemap.local_to_map(global_position)
 	return tile_coord
-

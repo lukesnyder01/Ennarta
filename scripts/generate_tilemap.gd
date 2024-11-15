@@ -1,6 +1,6 @@
-extends TileMap
+extends TileMapLayer
 
-var sight_radius := 32
+var sight_radius := 4
 var circle_points = []  # Array to hold the circle points
 
 
@@ -28,15 +28,7 @@ var tile_atlas_coords = {
 }
 
 var adjacency_rules = {
-	"stone01": [],
-	"stone02": [],
-	"tree01": [],
-	"dirt01": [],
-	"gravel01": [],
-	"gravel02": [],
-	"plants01": [],
-	"bushes01": [],
-	"footprint": [],
+
 }
 
 
@@ -95,19 +87,19 @@ func add_circle_points(circle_points: Array, x: int, y: int):
 func update_adjacency_rules():
 	# Clear existing adjacency rules
 	# adjacency_rules.clear()
-	for i in tile_atlas_coords:
-		adjacency_rules[i] = []
+	#for i in tile_atlas_coords:
+		#adjacency_rules[i] = []
 
-	var used_cells = get_used_cells(0)
+	var used_cells = get_used_cells
 
 	for tile_pos in used_cells:
 		# Get the current tile's position
 		#var tile_pos = Vector2(x, y)
 		
 		
-		if get_cell_source_id(0, tile_pos) != -1:
+		if get_cell_source_id(tile_pos) != -1:
 			# Get the tile type and its coordinates in the atlas
-			var tile_coords = get_cell_atlas_coords(0, tile_pos)
+			var tile_coords = get_cell_atlas_coords(tile_pos)
 			var tile_type = tile_atlas_coords.find_key(tile_coords)
 			
 			# If the tile type is not found in the atlas, skip it
@@ -130,14 +122,14 @@ func update_adjacency_rules():
 func initialize_world(rect: Rect2):
 	for x in range(rect.position.x, rect.position.x + rect.size.x):
 		for y in range(rect.position.y, rect.position.y + rect.size.y):
-			if get_cell_source_id(0, Vector2i(x, y)) == -1:
+			if get_cell_source_id(Vector2i(x, y)) == -1:
 				generate_tile_with_constraints(Vector2i(x, y))
 
 
 func randomize_player_sight_circle(player_coords: Vector2i):
 	for coord in circle_points:
 		coord = coord + player_coords
-		if get_cell_source_id(0, coord) == -1: # if the tile is empty
+		if get_cell_source_id(coord) == -1: # if the tile is empty
 			generate_tile_with_constraints(coord)
 			
 			
@@ -150,8 +142,8 @@ func randomize_player_sight_circle(player_coords: Vector2i):
 
 
 func change_tile(tile_coord: Vector2i, tile_type: String):
-	if get_cell_source_id(0, tile_coord) == -1:
-		set_cell(0, tile_coord, 0, tile_atlas_coords[tile_type])
+	if get_cell_source_id(tile_coord) == -1:
+		set_cell(tile_coord, 0, tile_atlas_coords[tile_type])
 
 
 func generate_tile_with_constraints(position: Vector2i):
@@ -175,7 +167,7 @@ func get_adjacent_tile_types(position: Vector2i) -> Array:
 	var adjacent_tile_types = []
 
 	for pos in adjacent_positions:
-		var coords = get_cell_atlas_coords(0, pos)
+		var coords = get_cell_atlas_coords(pos)
 		var tile_type = tile_atlas_coords.find_key(coords)
 		if tile_type != null:
 			adjacent_tile_types.append(tile_type)

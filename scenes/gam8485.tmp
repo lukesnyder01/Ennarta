@@ -15,4 +15,4 @@ script = ExtResource("2_3ired")
 [node name="player" parent="." node_paths=PackedStringArray("tilemap") instance=ExtResource("1_5luvj")]
 position = Vector2(8, 8)
 player_move_delay = 0.1
-tilemap = NodePath("../World")
+tilemap = NodePath("")
