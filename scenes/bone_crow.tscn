@@ -1,0 +1,39 @@
+[gd_scene load_steps=7 format=3 uid="uid://b8ae2low61ovp"]
+
+[ext_resource type="Texture2D" uid="uid://b06n3m758lxq6" path="res://sprites/tileset.png" id="1_r2fch"]
+[ext_resource type="Script" path="res://scripts/bone_crow.gd" id="1_r3u06"]
+[ext_resource type="PackedScene" uid="uid://bj8a8t4mckvqh" path="res://scenes/grid_movement.tscn" id="3_e0l62"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ocko7"]
+atlas = ExtResource("1_r2fch")
+region = Rect2(0, 208, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_3vpp0"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ocko7")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_sj5jm"]
+
+[node name="BoneCrow" type="CharacterBody2D" groups=["enemy"]]
+script = ExtResource("1_r3u06")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_3vpp0")
+
+[node name="GridMovement" parent="." node_paths=PackedStringArray("self_node") instance=ExtResource("3_e0l62")]
+self_node = NodePath("..")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
+shape = SubResource("RectangleShape2D_sj5jm")
+
+[node name="RayCast2D" type="RayCast2D" parent="."]
+visible = false
+target_position = Vector2(0, 31)

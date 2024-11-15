@@ -1,0 +1,403 @@
+[gd_scene load_steps=5 format=3 uid="uid://b8iksg0xelker"]
+
+[ext_resource type="PackedScene" uid="uid://1ube7cqixybm" path="res://scenes/player.tscn" id="1_5luvj"]
+[ext_resource type="TileSet" uid="uid://bxdqchdgs1hy2" path="res://data/world_tileset.tres" id="1_nor1x"]
+[ext_resource type="Script" path="res://scripts/generate_tilemap.gd" id="2_3ired"]
+[ext_resource type="PackedScene" uid="uid://b8ae2low61ovp" path="res://scenes/bone_crow.tscn" id="4_wckxr"]
+
+[node name="Game" type="Node2D"]
+
+[node name="World" type="TileMap" parent="."]
+tile_set = ExtResource("1_nor1x")
+format = 2
+layer_0/tile_data = PackedInt32Array(-1, 0, 1, 65535, 0, 1, 0, 0, 1, -65536, 0, 1, -65535, 0, 1, 1, 0, 1, 65537, 0, 1, 65536, 0, 1, 131071, 0, 1, -65534, 131072, 1, -65533, 131072, 1, -65532, 65536, 1, -65531, 262144, 0, -131069, 131072, 1, -196605, 196608, 1, -262141, 262144, 1, -262142, 131072, 1, -262140, 65536, 1, 5, 262144, 1, 4, 131072, 1, 3, 65536, 1, 2, 0, 1, -327677, 262144, 1, -327678, 196608, 1, -131070, 262144, 1, -131068, 262144, 1, 65539, 262144, 1, 65538, 0, 1, 6, 65536, 0, 65541, 65536, 1, 65540, 262144, 0, 131077, 65536, 1, 131076, 65536, 1, 196612, 0, 1, 196613, 262144, 1, 131075, 0, 1, 196611, 0, 1, 262147, 65536, 1, 262148, 65536, 1, 262149, 65536, 1, 131078, 65536, 1, 65542, 262144, 1, -327679, 196608, 1, -262143, 196608, 1, -196607, 131072, 1, -131071, 0, 1, 131074, 0, 1, 196610, 0, 1, -196606, 131072, 1, -196604, 131072, 1, -327676, 131072, 1, -131067, 262144, 1, -393214, 196608, 1, -393215, 196608, 1, -262144, 196608, 1, -458751, 196608, 0, -524287, 196608, 0, -524286, 196608, 0, -458750, 196608, 0, -458749, 131072, 1, -393213, 131072, 1, -393212, 0, 1, -327675, 0, 1, -65530, 65536, 0, -65529, 65536, 0, 7, 65536, 0, -131065, 131072, 0, -131064, 131072, 0, -65528, 131072, 0, -131066, 262144, 1, 131063, 327680, 0, 196600, 327680, 0, 131064, 327680, 0, 65527, 327680, 0, 65528, 327680, 0, -9, 327680, 0, -65546, 327680, 0, -65545, 393216, 0, -131082, 393216, 0, -131081, 393216, 0, -65544, 393216, 0, -8, 393216, 0, 65529, 393216, 0, 131065, 393216, 0, 196601, 393216, 0, 262136, 393216, 0, 262137, 393216, 1, 327673, 393216, 1, 327672, 393216, 1, -196618, 393216, 1, -196617, 393216, 1, -196616, 393216, 1, -131080, 393216, 1, -131079, 393216, 1, -131078, 393216, 1, -65542, 393216, 1, -65543, 393216, 1, -7, 393216, 1, -6, 393216, 1, 65530, 393216, 1, 131066, 65536, 1, 131067, 65536, 1, 65531, 65536, 1, -5, 65536, 1, 196602, 65536, 1, 196603, 0, 1, -196615, 65536, 1, -196614, 0, 1, -262151, 0, 1, -262152, 0, 1, -262150, 0, 1, -196613, 65536, 1, -131077, 65536, 1, -65541, 65536, 1, -65540, 262144, 1, -4, 65536, 1, -65539, 131072, 1, -65538, 131072, 1, -131074, 196608, 1, -131075, 131072, 2, -131073, 65536, 2, -65537, 131072, 1, -131072, 131072, 1, -196608, 131072, 1, -196609, 65536, 2, -196610, 196608, 1, -196611, 131072, 1, -196612, 131072, 1, -131076, 131072, 1, -262147, 131072, 1, -262146, 131072, 1, -262145, 131072, 2, -327680, 131072, 2, -393216, 131072, 1, -327681, 131072, 1, -262148, 65536, 1, -3, 65536, 1, -2, 65536, 1, -196602, 262144, 1, -196601, 262144, 0, 8, 131072, 0, 9, 131072, 0, 65545, 131072, 0, 65544, 131072, 0, 65543, 65536, 0, -65527, 262144, 0, 131079, 262144, 0, -524288, 196608, 0, -458752, 196608, 0, -524285, 196608, 0, -589822, 196608, 0, -589823, 196608, 0, -589824, 131072, 2, -589821, 131072, 2, -393217, 131072, 2, 65534, 0, 1, 65533, 0, 1, 131069, 0, 1, 65532, 0, 1, 131068, 0, 1, 196605, 0, 1, 131070, 0, 1, -262149, 0, 1, -327685, 0, 1, -327684, 0, 1, -327683, 0, 1, -393219, 0, 1, -327686, 0, 1, -327687, 0, 1, -262153, 262144, 1, -262154, 0, 1, -327690, 0, 1, 262138, 0, 1, 327674, 0, 1, 393210, 0, 1, 393209, 262144, 1, 393211, 0, 1, 393212, 0, 1, 327676, 0, 1, 262139, 0, 1, 262140, 0, 1, 196604, 0, 1, 196606, 0, 1, 131072, 0, 1, 131073, 0, 1, 196609, 0, 1, 262146, 0, 1, 327682, 0, 1, 327683, 0, 1, 327684, 0, 1, 327685, 0, 1, 327686, 0, 1, 262150, 0, 1, 196614, 0, 1, 262151, 0, 1, 196615, 0, 1, -196603, 0, 1, -262139, 0, 1, -262138, 0, 1, -262137, 0, 1, -327673, 0, 1, -327674, 0, 1, -393211, 0, 1, -458748, 0, 1)
+script = ExtResource("2_3ired")
+
+[node name="player" parent="." node_paths=PackedStringArray("tilemap") instance=ExtResource("1_5luvj")]
+position = Vector2(8, 8)
+player_move_delay = 0.1
+tilemap = NodePath("../World")
+
+[node name="BoneCrow" parent="." instance=ExtResource("4_wckxr")]
+position = Vector2(-389, -444)
+
+[node name="BoneCrow2" parent="." instance=ExtResource("4_wckxr")]
+position = Vector2(-430, -481)
+
+[node name="BoneCrow3" parent="." instance=ExtResource("4_wckxr")]
+position = Vector2(-423, -435)
+
+[node name="BoneCrow4" parent="." instance=ExtResource("4_wckxr")]
+position = Vector2(-457, -420)
+
+[node name="BoneCrow5" parent="." instance=ExtResource("4_wckxr")]
+position = Vector2(-412, -531)
+
+[node name="BoneCrow6" parent="." instance=ExtResource("4_wckxr")]
+position = Vector2(-453, -568)
+
+[node name="BoneCrow7" parent="." instance=ExtResource("4_wckxr")]
+position = Vector2(-446, -522)
+
+[node name="BoneCrow8" parent="." instance=ExtResource("4_wckxr")]
+position = Vector2(-480, -507)
+
+[node name="BoneCrow9" parent="." instance=ExtResource("4_wckxr")]
+position = Vector2(-545, -540)
+
+[node name="BoneCrow10" parent="." instance=ExtResource("4_wckxr")]
+position = Vector2(-586, -577)
+
+[node name="BoneCrow11" parent="." instance=ExtResource("4_wckxr")]
+position = Vector2(-579, -531)
+
+[node name="BoneCrow12" parent="." instance=ExtResource("4_wckxr")]
+position = Vector2(-613, -516)
+
+[node name="BoneCrow13" parent="." instance=ExtResource("4_wckxr")]
+position = Vector2(-568, -627)
+
+[node name="BoneCrow14" parent="." instance=ExtResource("4_wckxr")]
+position = Vector2(-609, -664)
+
+[node name="BoneCrow15" parent="." instance=ExtResource("4_wckxr")]
+position = Vector2(-602, -618)
+
+[node name="BoneCrow16" parent="." instance=ExtResource("4_wckxr")]
+position = Vector2(-636, -603)
+
+[node name="BoneCrow17" parent="." instance=ExtResource("4_wckxr")]
+position = Vector2(55, -580)
+
+[node name="BoneCrow18" parent="." instance=ExtResource("4_wckxr")]
+position = Vector2(14, -617)
+
+[node name="BoneCrow19" parent="." instance=ExtResource("4_wckxr")]
+position = Vector2(21, -571)
+
+[node name="BoneCrow20" parent="." instance=ExtResource("4_wckxr")]
+position = Vector2(-13, -556)
+
+[node name="BoneCrow21" parent="." instance=ExtResource("4_wckxr")]
+position = Vector2(32, -667)
+
+[node name="BoneCrow22" parent="." instance=ExtResource("4_wckxr")]
+position = Vector2(-9, -704)
+
+[node name="BoneCrow23" parent="." instance=ExtResource("4_wckxr")]
+position = Vector2(-2, -658)
+
+[node name="BoneCrow24" parent="." instance=ExtResource("4_wckxr")]
+position = Vector2(-36, -643)
+
+[node name="BoneCrow25" parent="." instance=ExtResource("4_wckxr")]
+position = Vector2(248, -320)
+
+[node name="BoneCrow26" parent="." instance=ExtResource("4_wckxr")]
+position = Vector2(207, -357)
+
+[node name="BoneCrow27" parent="." instance=ExtResource("4_wckxr")]
+position = Vector2(214, -311)
+
+[node name="BoneCrow28" parent="." instance=ExtResource("4_wckxr")]
+position = Vector2(180, -296)
+
+[node name="BoneCrow29" parent="." instance=ExtResource("4_wckxr")]
+position = Vector2(225, -407)
+
+[node name="BoneCrow30" parent="." instance=ExtResource("4_wckxr")]
+position = Vector2(184, -444)
+
+[node name="BoneCrow31" parent="." instance=ExtResource("4_wckxr")]
+position = Vector2(191, -398)
+
+[node name="BoneCrow32" parent="." instance=ExtResource("4_wckxr")]
+position = Vector2(157, -383)
+
+[node name="BoneCrow33" parent="." instance=ExtResource("4_wckxr")]
+position = Vector2(-28, -145)
+
+[node name="BoneCrow34" parent="." instance=ExtResource("4_wckxr")]
+position = Vector2(-69, -182)
+
+[node name="BoneCrow35" parent="." instance=ExtResource("4_wckxr")]
+position = Vector2(-62, -136)
+
+[node name="BoneCrow36" parent="." instance=ExtResource("4_wckxr")]
+position = Vector2(-96, -121)
+
+[node name="BoneCrow37" parent="." instance=ExtResource("4_wckxr")]
+position = Vector2(-51, -232)
+
+[node name="BoneCrow38" parent="." instance=ExtResource("4_wckxr")]
+position = Vector2(-92, -269)
+
+[node name="BoneCrow39" parent="." instance=ExtResource("4_wckxr")]
+position = Vector2(-85, -223)
+
+[node name="BoneCrow40" parent="." instance=ExtResource("4_wckxr")]
+position = Vector2(-119, -208)
+
+[node name="BoneCrow41" parent="." instance=ExtResource("4_wckxr")]
+position = Vector2(-275, -860)
+
+[node name="BoneCrow42" parent="." instance=ExtResource("4_wckxr")]
+position = Vector2(-316, -897)
+
+[node name="BoneCrow43" parent="." instance=ExtResource("4_wckxr")]
+position = Vector2(-309, -851)
+
+[node name="BoneCrow44" parent="." instance=ExtResource("4_wckxr")]
+position = Vector2(-343, -836)
+
+[node name="BoneCrow45" parent="." instance=ExtResource("4_wckxr")]
+position = Vector2(-298, -947)
+
+[node name="BoneCrow46" parent="." instance=ExtResource("4_wckxr")]
+position = Vector2(-339, -984)
+
+[node name="BoneCrow47" parent="." instance=ExtResource("4_wckxr")]
+position = Vector2(-332, -938)
+
+[node name="BoneCrow48" parent="." instance=ExtResource("4_wckxr")]
+position = Vector2(-366, -923)
+
+[node name="BoneCrow49" parent="." instance=ExtResource("4_wckxr")]
+position = Vector2(316, -927)
+
+[node name="BoneCrow50" parent="." instance=ExtResource("4_wckxr")]
+position = Vector2(275, -964)
+
+[node name="BoneCrow51" parent="." instance=ExtResource("4_wckxr")]
+position = Vector2(282, -918)
+
+[node name="BoneCrow52" parent="." instance=ExtResource("4_wckxr")]
+position = Vector2(248, -903)
+
+[node name="BoneCrow53" parent="." instance=ExtResource("4_wckxr")]
+position = Vector2(293, -1014)
+
+[node name="BoneCrow54" parent="." instance=ExtResource("4_wckxr")]
+position = Vector2(252, -1051)
+
+[node name="BoneCrow55" parent="." instance=ExtResource("4_wckxr")]
+position = Vector2(259, -1005)
+
+[node name="BoneCrow56" parent="." instance=ExtResource("4_wckxr")]
+position = Vector2(225, -990)
+
+[node name="BoneCrow57" parent="." instance=ExtResource("4_wckxr")]
+position = Vector2(510, -646)
+
+[node name="BoneCrow58" parent="." instance=ExtResource("4_wckxr")]
+position = Vector2(469, -683)
+
+[node name="BoneCrow59" parent="." instance=ExtResource("4_wckxr")]
+position = Vector2(476, -637)
+
+[node name="BoneCrow60" parent="." instance=ExtResource("4_wckxr")]
+position = Vector2(442, -622)
+
+[node name="BoneCrow61" parent="." instance=ExtResource("4_wckxr")]
+position = Vector2(487, -733)
+
+[node name="BoneCrow62" parent="." instance=ExtResource("4_wckxr")]
+position = Vector2(446, -770)
+
+[node name="BoneCrow63" parent="." instance=ExtResource("4_wckxr")]
+position = Vector2(453, -724)
+
+[node name="BoneCrow64" parent="." instance=ExtResource("4_wckxr")]
+position = Vector2(419, -709)
+
+[node name="BoneCrow65" parent="." instance=ExtResource("4_wckxr")]
+position = Vector2(-1069, -928)
+
+[node name="BoneCrow66" parent="." instance=ExtResource("4_wckxr")]
+position = Vector2(-1110, -965)
+
+[node name="BoneCrow67" parent="." instance=ExtResource("4_wckxr")]
+position = Vector2(-1103, -919)
+
+[node name="BoneCrow68" parent="." instance=ExtResource("4_wckxr")]
+position = Vector2(-1137, -904)
+
+[node name="BoneCrow69" parent="." instance=ExtResource("4_wckxr")]
+position = Vector2(-1092, -1015)
+
+[node name="BoneCrow70" parent="." instance=ExtResource("4_wckxr")]
+position = Vector2(-1133, -1052)
+
+[node name="BoneCrow71" parent="." instance=ExtResource("4_wckxr")]
+position = Vector2(-1126, -1006)
+
+[node name="BoneCrow72" parent="." instance=ExtResource("4_wckxr")]
+position = Vector2(-1160, -991)
+
+[node name="BoneCrow73" parent="." instance=ExtResource("4_wckxr")]
+position = Vector2(-1225, -1024)
+
+[node name="BoneCrow74" parent="." instance=ExtResource("4_wckxr")]
+position = Vector2(-1266, -1061)
+
+[node name="BoneCrow75" parent="." instance=ExtResource("4_wckxr")]
+position = Vector2(-1259, -1015)
+
+[node name="BoneCrow76" parent="." instance=ExtResource("4_wckxr")]
+position = Vector2(-1293, -1000)
+
+[node name="BoneCrow77" parent="." instance=ExtResource("4_wckxr")]
+position = Vector2(-1248, -1111)
+
+[node name="BoneCrow78" parent="." instance=ExtResource("4_wckxr")]
+position = Vector2(-1289, -1148)
+
+[node name="BoneCrow79" parent="." instance=ExtResource("4_wckxr")]
+position = Vector2(-1282, -1102)
+
+[node name="BoneCrow80" parent="." instance=ExtResource("4_wckxr")]
+position = Vector2(-1316, -1087)
+
+[node name="BoneCrow81" parent="." instance=ExtResource("4_wckxr")]
+position = Vector2(-625, -1064)
+
+[node name="BoneCrow82" parent="." instance=ExtResource("4_wckxr")]
+position = Vector2(-666, -1101)
+
+[node name="BoneCrow83" parent="." instance=ExtResource("4_wckxr")]
+position = Vector2(-659, -1055)
+
+[node name="BoneCrow84" parent="." instance=ExtResource("4_wckxr")]
+position = Vector2(-693, -1040)
+
+[node name="BoneCrow85" parent="." instance=ExtResource("4_wckxr")]
+position = Vector2(-648, -1151)
+
+[node name="BoneCrow86" parent="." instance=ExtResource("4_wckxr")]
+position = Vector2(-689, -1188)
+
+[node name="BoneCrow87" parent="." instance=ExtResource("4_wckxr")]
+position = Vector2(-682, -1142)
+
+[node name="BoneCrow88" parent="." instance=ExtResource("4_wckxr")]
+position = Vector2(-716, -1127)
+
+[node name="BoneCrow89" parent="." instance=ExtResource("4_wckxr")]
+position = Vector2(-432, -804)
+
+[node name="BoneCrow90" parent="." instance=ExtResource("4_wckxr")]
+position = Vector2(-473, -841)
+
+[node name="BoneCrow91" parent="." instance=ExtResource("4_wckxr")]
+position = Vector2(-466, -795)
+
+[node name="BoneCrow92" parent="." instance=ExtResource("4_wckxr")]
+position = Vector2(-500, -780)
+
+[node name="BoneCrow93" parent="." instance=ExtResource("4_wckxr")]
+position = Vector2(-455, -891)
+
+[node name="BoneCrow94" parent="." instance=ExtResource("4_wckxr")]
+position = Vector2(-496, -928)
+
+[node name="BoneCrow95" parent="." instance=ExtResource("4_wckxr")]
+position = Vector2(-489, -882)
+
+[node name="BoneCrow96" parent="." instance=ExtResource("4_wckxr")]
+position = Vector2(-523, -867)
+
+[node name="BoneCrow97" parent="." instance=ExtResource("4_wckxr")]
+position = Vector2(-708, -629)
+
+[node name="BoneCrow98" parent="." instance=ExtResource("4_wckxr")]
+position = Vector2(-749, -666)
+
+[node name="BoneCrow99" parent="." instance=ExtResource("4_wckxr")]
+position = Vector2(-742, -620)
+
+[node name="BoneCrow100" parent="." instance=ExtResource("4_wckxr")]
+position = Vector2(-776, -605)
+
+[node name="BoneCrow101" parent="." instance=ExtResource("4_wckxr")]
+position = Vector2(-731, -716)
+
+[node name="BoneCrow102" parent="." instance=ExtResource("4_wckxr")]
+position = Vector2(-772, -753)
+
+[node name="BoneCrow103" parent="." instance=ExtResource("4_wckxr")]
+position = Vector2(-765, -707)
+
+[node name="BoneCrow104" parent="." instance=ExtResource("4_wckxr")]
+position = Vector2(-799, -692)
+
+[node name="BoneCrow105" parent="." instance=ExtResource("4_wckxr")]
+position = Vector2(-955, -1344)
+
+[node name="BoneCrow106" parent="." instance=ExtResource("4_wckxr")]
+position = Vector2(-996, -1381)
+
+[node name="BoneCrow107" parent="." instance=ExtResource("4_wckxr")]
+position = Vector2(-989, -1335)
+
+[node name="BoneCrow108" parent="." instance=ExtResource("4_wckxr")]
+position = Vector2(-1023, -1320)
+
+[node name="BoneCrow109" parent="." instance=ExtResource("4_wckxr")]
+position = Vector2(-978, -1431)
+
+[node name="BoneCrow110" parent="." instance=ExtResource("4_wckxr")]
+position = Vector2(-1019, -1468)
+
+[node name="BoneCrow111" parent="." instance=ExtResource("4_wckxr")]
+position = Vector2(-1012, -1422)
+
+[node name="BoneCrow112" parent="." instance=ExtResource("4_wckxr")]
+position = Vector2(-1046, -1407)
+
+[node name="BoneCrow113" parent="." instance=ExtResource("4_wckxr")]
+position = Vector2(-364, -1411)
+
+[node name="BoneCrow114" parent="." instance=ExtResource("4_wckxr")]
+position = Vector2(-405, -1448)
+
+[node name="BoneCrow115" parent="." instance=ExtResource("4_wckxr")]
+position = Vector2(-398, -1402)
+
+[node name="BoneCrow116" parent="." instance=ExtResource("4_wckxr")]
+position = Vector2(-432, -1387)
+
+[node name="BoneCrow117" parent="." instance=ExtResource("4_wckxr")]
+position = Vector2(-387, -1498)
+
+[node name="BoneCrow118" parent="." instance=ExtResource("4_wckxr")]
+position = Vector2(-428, -1535)
+
+[node name="BoneCrow119" parent="." instance=ExtResource("4_wckxr")]
+position = Vector2(-421, -1489)
+
+[node name="BoneCrow120" parent="." instance=ExtResource("4_wckxr")]
+position = Vector2(-455, -1474)
+
+[node name="BoneCrow121" parent="." instance=ExtResource("4_wckxr")]
+position = Vector2(-170, -1130)
+
+[node name="BoneCrow122" parent="." instance=ExtResource("4_wckxr")]
+position = Vector2(-211, -1167)
+
+[node name="BoneCrow123" parent="." instance=ExtResource("4_wckxr")]
+position = Vector2(-204, -1121)
+
+[node name="BoneCrow124" parent="." instance=ExtResource("4_wckxr")]
+position = Vector2(-238, -1106)
+
+[node name="BoneCrow125" parent="." instance=ExtResource("4_wckxr")]
+position = Vector2(-193, -1217)
+
+[node name="BoneCrow126" parent="." instance=ExtResource("4_wckxr")]
+position = Vector2(-234, -1254)
+
+[node name="BoneCrow127" parent="." instance=ExtResource("4_wckxr")]
+position = Vector2(-227, -1208)
+
+[node name="BoneCrow128" parent="." instance=ExtResource("4_wckxr")]
+position = Vector2(-261, -1193)
