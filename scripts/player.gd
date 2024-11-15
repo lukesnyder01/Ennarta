@@ -13,6 +13,7 @@ var recent_move := Vector2.ZERO
 
 
 func _ready():
+	add_to_group("player")
 	position = Utilities.snap_to_grid(position)
  
 

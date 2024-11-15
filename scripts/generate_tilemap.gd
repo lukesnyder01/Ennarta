@@ -1,6 +1,6 @@
 extends TileMapLayer
 
-var sight_radius := 4
+var sight_radius := 5
 var circle_points = []  # Array to hold the circle points
 
 
@@ -22,7 +22,7 @@ var tile_atlas_coords = {
 	"gravel01": Vector2i(4, 1), 
 	
 	"flowers_pink": Vector2i(1, 2), 
-	"flowers_gold": Vector2i(2, 3), 
+	"flowers_gold": Vector2i(2, 2), 
 	
 	"footprint":Vector2i(1, 14),
 }
@@ -40,7 +40,7 @@ func _ready():
 	var rect = Rect2(Vector2(-world_size/2, -world_size/2), Vector2(world_size, world_size)) # Rectangle area to randomize
 	initialize_world(rect)
 	
-	print(adjacency_rules)
+	
 	
 	generate_midpoint_circle(sight_radius)
 	randomize_player_sight_circle(Vector2i.ZERO)
@@ -136,7 +136,16 @@ func randomize_player_sight_circle(player_coords: Vector2i):
 func change_tile(tile_coord: Vector2i, tile_type: String):
 	if get_cell_source_id(tile_coord) == -1:
 		set_cell(tile_coord, 0, tile_atlas_coords[tile_type])
+		if tile_type == "bushes01" and randf() < 0.3:
+			spawn_berry(tile_coord)
 
+func spawn_berry(tile_coord: Vector2i):
+	var berry_scene = preload("res://scenes/berry.tscn")
+	var berry_instance = berry_scene.instantiate()
+		
+	# Convert tile coordinates to world position
+	berry_instance.position = map_to_local(tile_coord)
+	add_child(berry_instance)
 
 
 func generate_tile_with_constraints(position: Vector2i):

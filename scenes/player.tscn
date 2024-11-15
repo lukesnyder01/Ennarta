@@ -29,6 +29,7 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_l0u8a"]
 
 [node name="player" type="CharacterBody2D" groups=["player"]]
+collision_mask = 2
 slide_on_ceiling = false
 script = ExtResource("2_hmjhi")
 
@@ -50,5 +51,5 @@ position_smoothing_enabled = true
 position_smoothing_speed = 10.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-visible = false
+scale = Vector2(0.67, 0.67)
 shape = SubResource("RectangleShape2D_l0u8a")
