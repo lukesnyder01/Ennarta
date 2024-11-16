@@ -1,6 +1,6 @@
 extends TileMapLayer
 
-var sight_radius := 5
+var sight_radius := 4
 var circle_points = []  # Array to hold the circle points
 
 
@@ -126,6 +126,7 @@ func initialize_world(rect: Rect2):
 
 
 func randomize_player_sight_circle(player_coords: Vector2i):
+	circle_points.shuffle()
 	for coord in circle_points:
 		coord = coord + player_coords
 		if get_cell_source_id(coord) == -1: # if the tile is empty
@@ -134,13 +135,12 @@ func randomize_player_sight_circle(player_coords: Vector2i):
 
 
 func change_tile(tile_coord: Vector2i, tile_type: String):
-	if get_cell_source_id(tile_coord) == -1:
 		set_cell(tile_coord, 0, tile_atlas_coords[tile_type])
+		
 		if tile_type == "bushes01" and randf() < 0.2:
 			spawn_berry(tile_coord)
-		elif tile_type == "stone02" and randf() < 0.4:
+		elif tile_type == "dirt01" and randf() < 0.05:
 			spawn_enemy(tile_coord)
-
 
 
 func spawn_berry(tile_coord: Vector2i):
@@ -211,7 +211,14 @@ func get_possible_tiles(neighbors: Array) -> Array:
 					break
 
 			if valid_tile:
-				possible_tiles.append(tile) # Add the valid tile
+				# Add the tile to possible_tiles for each occurrence in adjacency_rules
+				var occurrences = 0
+				for neighbor in adjacency_rules[tile]:
+					if neighbor in neighbors:
+						occurrences += 1
+
+				for _i in range(occurrences):
+					possible_tiles.append(tile)
 				
 	return possible_tiles
 		
