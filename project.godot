@@ -20,6 +20,7 @@ config/icon="res://icon.svg"
 Constants="*res://scripts/constants.gd"
 Utilities="*res://scripts/utilities.gd"
 EnemyManager="*res://scripts/enemy_manager.gd"
+GameManager="*res://scripts/game_manager.gd"
 
 [input]
 

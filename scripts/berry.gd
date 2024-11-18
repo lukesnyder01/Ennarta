@@ -5,5 +5,6 @@ func _on_body_entered(body):
 		var player_audio_player = body.get_node("BerrySound")
 		if player_audio_player:
 			player_audio_player.play()  # Play the eating sound
-
-		queue_free()  # Destroy the berrywith function body.
+		GameManager.player_health += 1
+		queue_free()  # Destroy the berry
+		
