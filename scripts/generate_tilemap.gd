@@ -1,6 +1,6 @@
 extends TileMapLayer
 
-var sight_radius := 4
+var sight_radius := 5
 var circle_points = []  # Array to hold the circle points
 
 
@@ -34,8 +34,7 @@ var adjacency_rules = {
 
 func _ready():
 	update_adjacency_rules()
-	
-	
+
 	var world_size = sight_radius * 2
 	var rect = Rect2(Vector2(-world_size/2, -world_size/2), Vector2(world_size, world_size)) # Rectangle area to randomize
 	initialize_world(rect)
